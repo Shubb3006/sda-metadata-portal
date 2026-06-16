@@ -44,7 +44,6 @@ const DatasetDetail = () => {
         </div>
       ) : (
         <div className="bg-base-100 shadow-lg rounded-lg p-6">
-          {/* Back Button Row */}
           <div className="mb-4">
             <Link
               to="/"

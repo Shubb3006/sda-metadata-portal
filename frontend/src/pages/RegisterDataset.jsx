@@ -22,6 +22,7 @@ const RegisterDataset = () => {
   const [err, setErr] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  //fetch sectors once when the page renders
   useEffect(() => {
     const fetchAllSectors = async () => {
       try {
@@ -37,6 +38,7 @@ const RegisterDataset = () => {
     fetchAllSectors();
   }, []);
 
+  //function to handle the changes in controlled components
   const handleChange = (e) => {
     setData({
       ...data,
@@ -44,6 +46,7 @@ const RegisterDataset = () => {
     });
   };
 
+  //function to reset the valuesafter successfull registeration
   const resetValues = () => {
     setData({
       title: "",
@@ -58,6 +61,7 @@ const RegisterDataset = () => {
     });
   };
 
+  //check if the inputs are valid before calling the api
   const formValid = () => {
     return (
       data.title?.trim() &&
@@ -70,6 +74,7 @@ const RegisterDataset = () => {
     );
   };
 
+  //handle subission fo the form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErr("");
@@ -82,8 +87,9 @@ const RegisterDataset = () => {
         .filter(Boolean),
     };
 
-    const success = formValid();
-    if (!success) {
+    // prevent invalid submission
+    const isValid = formValid();
+    if (!isValid) {
       setErr("Inputs are required");
 
       setTimeout(() => {

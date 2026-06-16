@@ -17,6 +17,7 @@ const DatasetList = () => {
   const [allDepartments, setAllDepartemts] = useState([]);
   const [err, setErr] = useState("");
 
+ // Fetch datasets whenever filters or search changes
   useEffect(() => {
     const fethchDatasets = async () => {
       try {
@@ -40,6 +41,8 @@ const DatasetList = () => {
     fethchDatasets();
   }, [search, sector, classification, department]);
 
+
+  //fetch all the sectors once the page renders
   useEffect(() => {
     const fetchAllSectors = async () => {
       try {
@@ -55,6 +58,7 @@ const DatasetList = () => {
     fetchAllSectors();
   }, []);
 
+  //fetch all the departments once the page renders
   useEffect(() => {
     const fetchALlDepartments = async () => {
       try {
@@ -71,6 +75,7 @@ const DatasetList = () => {
     fetchALlDepartments();
   }, []);
 
+  // show spinner while data is being fetched
   if (isSectorsFetching || isDepartmentsFetching || dataSetLoading) {
     return (
       <div className="flex flex-col justify-center items-center h-96 gap-3">

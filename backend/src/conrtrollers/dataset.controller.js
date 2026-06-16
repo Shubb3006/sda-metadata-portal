@@ -3,18 +3,24 @@ export const getDatasets=async(req,res)=>{
     try {
         let result=[...data]
         const { sector, classification, status, search,department } = req.query;
+
+        //filter acc to sector if it exists
         if (sector) {
             result = result.filter(d => d.sector.toLowerCase() === sector.toLowerCase());
         }
+        //filter acc to classification if it exists
         if (classification) {
             result = result.filter(d => d.classification.toLowerCase() === classification.toLowerCase());
         }
+        //filter acc to status if it exists
         if (status) {
             result = result.filter(d => d.status.toLowerCase() === status.toLowerCase());
         }
+        //filter acc to department if it exists
         if (department) {
             result = result.filter(d => d.department.toLowerCase() === department.toLowerCase());
         }
+       // apply search filter on title + description
         if (search) {
             result=result.filter((d)=>
                 d.title.toLowerCase().includes(search.toLowerCase()) || d.description.toLowerCase().includes(search.toLowerCase())
@@ -42,7 +48,7 @@ export const getDataSetById=async(req,res)=>{
 export const addDataset=async(req,res)=>{
     try {
         const {title, department, sector, formats, update_frequency, description, classification,coverage,tags}=req.body;
-
+        // validate required fields before creating dataset
         if (
             !title?.trim() ||
             !department?.trim() ||
@@ -58,7 +64,8 @@ export const addDataset=async(req,res)=>{
           }
 
           const newDataset = {
-            id: `UP-CUSTOM-${Date.now()}`,
+
+            id: `UP-CUSTOM-${Date.now()}`, // generate unique dataset ID using timestamp
             title,
             department,
             sector,
