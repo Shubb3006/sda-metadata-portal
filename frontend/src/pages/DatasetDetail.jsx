@@ -1,20 +1,21 @@
 import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const DatasetDetail = () => {
   const { id } = useParams();
   const [dataset, setDataset] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
   useEffect(() => {
     const loadDataset = async () => {
+      setLoading(true);
       try {
         const res = await fetch(`http://localhost:5050/api/datasets/${id}`);
         const data = await res.json();
         console.log(data);
         if (!res.ok) {
-          throw new Error(data.message || "Something went wrong");
+          throw new Error(data?.message || "Something went wrong");
         }
         setDataset(data);
       } catch (error) {
@@ -34,6 +35,7 @@ const DatasetDetail = () => {
       </div>
     );
   }
+
   return (
     <div className="max-w-5xl mx-auto py-8">
       {err ? (
@@ -42,6 +44,15 @@ const DatasetDetail = () => {
         </div>
       ) : (
         <div className="bg-base-100 shadow-lg rounded-lg p-6">
+          {/* Back Button Row */}
+          <div className="mb-4">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-700 transition"
+            >
+              ← Back to all datasets
+            </Link>
+          </div>
           <h1 className="text-3xl font-bold mb-2">{dataset.title}</h1>
 
           <div className="flex gap-2 mb-6">
@@ -111,7 +122,7 @@ const DatasetDetail = () => {
           </div>
 
           <div className="divider"></div>
-          {dataset.tags?.length > 0 && (
+          {Array.isArray(dataset.tags) && dataset.tags.length > 0 && (
             <>
               <h2 className="text-xl font-semibold mb-2">Tags</h2>
 
