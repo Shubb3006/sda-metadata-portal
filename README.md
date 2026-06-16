@@ -65,24 +65,27 @@ This project demonstrates a complete **frontend + backend integration using REST
 ---
 
 ## 📁 Project Structure
+
+```
 sda-metadata-portal/
 │
 ├── backend/
-│ ├── src/
-│ │ ├── server.js
-│ │ ├── routes/
-│ │ ├── controllers/
+│   ├── src/
+│   │   ├── server.js
+│   │   ├── routes/
+│   │   ├── controllers/
 │
 ├── frontend/
-│ ├── src/
-│ │ ├── pages/
-│ │ ├── components/
-│ │ ├── App.jsx
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   ├── App.jsx
 │
 ├── data/
-│ └── seed_datasets.json
+│   └── seed_datasets.json
 │
 └── README.md
+```
 
 
 ---
@@ -92,7 +95,8 @@ sda-metadata-portal/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/sda-metadata-portal.git
+git clone https://github.com/Shubb3006/sda-metadata-portal.git
+cd sda-metadata-portal
 ```
 
 ### 2. Backend Setup
@@ -147,26 +151,28 @@ Required fields:
 }
 ```
 
-### 🧠 Design Decisions
-Used in-memory JSON file instead of database to keep setup simple,
-Built separate API layer (controllers/routes) for scalability,
-Used React state filtering + backend filtering together,
-Added form validation both frontend + backend,
-Used query params instead of multiple endpoints for filtering
+## 🧠 Design Decisions
 
-### 🚀 Improvements (If More Time)
-Add database (MongoDB/PostgreSQL),
-Add authentication (admin vs user roles),
-Pagination for large datasets,
-Better UI (charts + analytics dashboard),
-File upload support for datasets,
-Deploy backend + frontend separately
+- Used in-memory JSON file instead of database to keep setup simple
+- Built separate API layer (controllers/routes) for scalability
+- Used React state filtering + backend filtering together
+- Added form validation both frontend + backend
+- Used query params instead of multiple endpoints for filtering
 
-### 📌 Status
-✔ Backend API completed
-✔ Frontend completed
-✔ Filtering + search working
-✔ Dataset registration working
-✔ Ready for submission
+## 🚀 Improvements (If More Time)
 
+- Add database (MongoDB/PostgreSQL)
+- Add authentication (admin vs user roles)
+- Pagination for large datasets
+- Better UI (charts + analytics dashboard)
+- File upload support for datasets
+- Deploy backend + frontend separately
+
+## 📌 Status
+
+- ✔ Backend API completed
+- ✔ Frontend completed
+- ✔ Filtering + search working
+- ✔ Dataset registration working
+- ✔ Ready for submission
 
